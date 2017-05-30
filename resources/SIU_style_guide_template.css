@@ -1,0 +1,61 @@
+
+#header {
+   /* orange */
+   /*background-color:#F47C20;*/
+   /* teal */
+   background-color:#588D97;
+   /* navy */
+   /*background-color:#414258;*/
+   /* grey */
+   /*background-color:#D1D3D4;*/
+   /*opacity:0.8;*/
+   background-image:url(./siu_logo.svg);
+   background-repeat: no-repeat;
+   background-position: right;
+   background-size: 35%;
+   color: white;
+   border-radius: 5px;
+   padding-left: 10px;
+   padding-bottom: 5px;
+}
+
+
+
+/* adding siu standard header formats */
+h1{
+  font-size: 24pt;
+  font-family:  "Century Gothic";
+  color: #FFFFFF;
+  font-weight: bold;
+}
+
+h2{
+  font-size: 18pt;
+  font-family:  "Century Gothic";
+  color: #588D97;
+  font-weight: bold;
+}
+
+h3{
+  font-size: 14pt;
+  font-family:  "Century Gothic";
+  color: #588D97;
+  font-weight: bold;
+}
+
+h4{
+  font-size: 12pt;
+  font-family:  "Century Gothic";
+  color: #414258;
+  font-weight: bold;
+}
+
+body{
+  font-size: 11pt;
+  font-family:  "Arial";
+  color: #000000;
+}
+
+
+
+  
