@@ -1,16 +1,19 @@
 ---
 title: "SIU Coding Style Guide"
-author: 'Author: Evidence and Insights'
-date: 'Last updated: May 2017'
+# author: 'Author: Evidence and Insights'
+date: 'Last updated: June 2017'
 output:
   html_document:
-    css: css/SIU_style_guide_template.css
+    css: ../resources/SIU_style_guide_template.css
     keep_md: yes
     self_contained: yes
+    toc: true
+    toc_float: 
+      collapsed: false
 ---
 
+## Documentation 
 
-## Documentation
 ### Standardised Headers
 All headers in scripts must use the standardised format. Examples of populated headers are shown below.
 

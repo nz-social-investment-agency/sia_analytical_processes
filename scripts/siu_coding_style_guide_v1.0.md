@@ -1,9 +1,8 @@
 # SIU Coding Style Guide
-Author: Evidence and Insights  
-Last updated: May 2017  
+Last updated: June 2017  
 
+## Documentation 
 
-## Documentation
 ### Standardised Headers
 All headers in scripts must use the standardised format. Examples of populated headers are shown below.
 
@@ -384,7 +383,7 @@ run;
 Think through the purpose of a graphic (whether it is exploratory, or part of the modelling process, or presentation of results) and the intended audience (you, other analysts, public) and hence choose graphics appropriately and only spend proportionate time on polishing.
 
 * Test important graphics on a sample from the intended audience
-* Graphics need to meet the audience’s need, and sometimes that means even a pie chart is right provided there aren't too many slices etc
+* Graphics need to meet the audienceâs need, and sometimes that means even a pie chart is right provided there aren't too many slices etc
 * No redundant dimensions (eg 3d barcharts or piecharts)
 * Non-traditional charts for specific purposes eg Sankey charts, mosaic plots, treemaps, diverging barcharts for likert scales can be useful in certain situations
 * Ensure that graphics are simple and easily understandable.
@@ -408,25 +407,25 @@ sofie_wts_freqpoly <-
 ```
 
 * Direct the eye to the data and its patterns, and minimise visual distraction from guides, labels and chartjunk.  Read Cleveland and Tufte.
-* Gridlines should either be white (or pale grey) if on a grey or similar plotting area, or pale grey on a white (or near white) plotting area – always should be much less attention-grabbing than whatever represents the data.  No black or dark grey gridlines on white plotting area.
+* Gridlines should either be white (or pale grey) if on a grey or similar plotting area, or pale grey on a white (or near white) plotting area â always should be much less attention-grabbing than whatever represents the data.  No black or dark grey gridlines on white plotting area.
 * Remove or at least minimise frames and borders around figures, plotting areas, legends; and if we must have them, make them pale grey rather than black.
 * Put borders on tables into the visual background (eg- pale grey rather than black).
 * Annotations, trend and smoothing lines, ellipses, etc all have their place if they draw the eye to the story.
-* Minimal reliance on point shape and linetype – more than about three variants and they get hard to tell apart.
+* Minimal reliance on point shape and linetype â more than about three variants and they get hard to tell apart.
 
 
 * Test important graphics through one of the online colour blind simulators
-* Carefully choose between discrete, diverging (eg blue to grey to red) and strictly increasing (eg. pale blue to dark blue) scales.  Don’t use a discrete colour scale for an ordered variable (eg “year” in bar charts, better to go from pale blue to dark blue than have discrete colours)
+* Carefully choose between discrete, diverging (eg blue to grey to red) and strictly increasing (eg. pale blue to dark blue) scales.  Donât use a discrete colour scale for an ordered variable (eg âyearâ in bar charts, better to go from pale blue to dark blue than have discrete colours)
 * Discrete scales should (generally) have equal chroma and luminance
 * Use well-designed and tested schemes like Viridis and Brewer when you can.
 * In barcharts (only) the continuous value axis must go to zero; but in line charts (eg time series) and scatter plots axes limits should maximise the plotting area used for the data.
 * Barcharts or dot plots should generally have the categories in some meaningful, non-alphabetical order (eg largest value to lowest), so just reading down the list of labels gives the reader something.
-* Order levels in legends to minimise the eye’s workload in travelling from the legend to the data; and consider direct labels as an alternative.
+* Order levels in legends to minimise the eyeâs workload in travelling from the legend to the data; and consider direct labels as an alternative.
 
 
 ### The text within a graphic
 * Country names should follow MFAT or United Nations practice. 
-* Clean up factor names etc before they go into the legend eg “Male” and “Female” rather than “SexMale”, “SexFemale”; and “New Plymouth” not “New_Plymouth”.
+* Clean up factor names etc before they go into the legend eg âMaleâ and âFemaleâ rather than âSexMaleâ, âSexFemaleâ; and âNew Plymouthâ not âNew_Plymouthâ.
 
 ```r
 ... +
@@ -442,7 +441,7 @@ sofie_wts_freqpoly <-
 ```
 
 * Use the correct fonts via the SIU theme, for text and label geoms in charts as well as for the basic elements.
-* Don’t forget the macrons or other special characters eg Māori, whānau, Pākehā (in R, can use “\u0101” or equivalent instead of “a” to get an a with a macron).
+* Donât forget the macrons or other special characters eg MÄori, whÄnau, PÄkehÄ (in R, can use â\u0101â or equivalent instead of âaâ to get an a with a macron).
 
 
 ```r

@@ -19,7 +19,14 @@
    padding-bottom: 5px;
 }
 
+.active.list-group-item, .active.list-group-item:focus, .active.list-group-item:hover{
+   background-color:#588D97;
+   border-color:#588D97;
+}
 
+.last-updated {
+  color: gray;
+}
 
 /* adding siu standard header formats */
 h1{
