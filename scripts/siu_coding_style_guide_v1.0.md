@@ -1,5 +1,11 @@
 # SIU Coding Style Guide
-Last updated: June 2017  
+
+<style>
+  .title {
+    padding-top: 10px;
+    padding-left: 10px;
+  }
+</style>
 
 ## Documentation 
 
@@ -10,35 +16,30 @@ All headers in scripts must use the standardised format. Examples of populated h
 
 
 ```r
-### ================================================================================================ ###
-### Title: k10_sense_check.R
-###
-### Description: produce plots that compare the K10 pscyhological distress
-### measure to the SF-36 perceieved disability measure
-###
-### Input: [IDI_Sandpit].[DL-MAA2016-15].[k10_vs_mh_band]
-###
-### Output: comparison_plot = large gg that produces a density plot
-### of those with need and those with little or no need
-### by average SF36 MH score
-###
-### Author: E Walsh
-###
-### Date: 24/2/2017
-###
-### Dependencies: k10_sense_check.sas builds the input table that is queried
-### this can be run through main_sofie.sas
-###
-### SQL query located in sql/k10_vs_sf36_mh_check.sql
-###
-###
-### Notes:
-###
-### Issues:
-###
-### History: 
-### 24 Feb 2017 EW v1
-### ================================================================================================ ###
+# ================================================================================================ #
+# Description: produce plots that compare the K10 pscyhological distress
+# measure to the SF-36 perceieved disability measure
+#
+# Input: [IDI_Sandpit].[DL-MAA2016-15].[k10_vs_mh_band]
+#
+# Output: comparison_plot = large gg that produces a density plot
+# of those with need and those with little or no need
+# by average SF36 MH score
+#
+# Author: E Walsh
+#
+# Dependencies: k10_sense_check.sas builds the input table that is queried
+# this can be run through main_sofie.sas
+#
+# SQL query located in sql/k10_vs_sf36_mh_check.sql
+#
+# Notes:
+#
+# Issues:
+#
+# History (reverse order): 
+# 24 Feb 2017 EW v1
+# ================================================================================================ #
 ```
 
 
@@ -46,30 +47,25 @@ All headers in scripts must use the standardised format. Examples of populated h
 
 ```sas
 /*********************************************************************************************************
-TITLE: get_need_profile.sas
-
-DESCRIPTION: Produce descriptive stats around those with an MHA need using the K10 score as
+Description: Produce descriptive stats around those with an MHA need using the K10 score as
 a proxy for need
 
-INPUT:
-sand.mha_pop_sofie_w7_wgt_adj
+Input: sand.mha_pop_sofie_w7_wgt_adj
 
-OUTPUT:
+Output:
 sf_sof_n_XXX = survey freq need cross tabulation output for variable XXX
 sf_sof_n_XXX_rnd = rounded cross tabulation output for variable XXX
 
-AUTHOR: E Walsh
+Author: E Walsh
 
-DATE: 26 Jan 2017
+Dependencies: see main_sofie.sas and run the libnames macros and formats scripts
 
-DEPENDENCIES: see main_sofie.sas and run the libnames macros and formats scripts
-
-NOTES: The sign out rules for SoFIE differ to the standard RR3 rounding. See pp.27-28 of the
+Notes: The sign out rules for SoFIE differ to the standard RR3 rounding. See pp.27-28 of the
 SoFIE User Guide.
 
 Issues:
 
-HISTORY: 
+History (reverse order): 
 26 Jan 2017 EW v1
 *********************************************************************************************************/
 ```
@@ -121,7 +117,7 @@ While writing comments in SQL, do not use comments that start with double-hyphen
 
 ## Formatting of Code
 * Arithmetic operators should be separated by white space.
-* Code must be indented properly (*Hint:* Use Ctrl A + Ctrl I in SAS)
+* Code must be indented properly (*Hint:* Use Ctrl A + Ctrl I in both SAS and R)
 * Code lines generally should not exceed a length of 130 for purposes of readability
 * One concept per line (see some examples below)
 
@@ -153,7 +149,7 @@ Most projects use the following file structures. The folder structure must be de
 * top_level_folder
       + docs (documentation to go in here)
       + examples (use this if you want a complete self contained example to be provided)
-      + gitignore (anything we dont want to be seen in a public repo goes in here)
+      + dev (anything in development that we dont want to be seen in our public repo goes in here)
       + include (any code that you would like to reuse from other projects go in here)
       + logs (used for long SAS processes that won't fit in the GUI log)
       + output (summary statistics, model output etc)
@@ -175,27 +171,42 @@ If you choose to completely deviate from this structure you need a good reason w
 * Versioning is a must. In the absence of a versioning tool use _v2 as a suffix on filenames, with ample comments in the history section of the code.
 * **Do not** use your name as a suffix.
 * Do not push code that does not run through to the repositories. In the future, hooks will prevent you from doing this.
-* Tools will be made publicly available on the SIU github repository https://github.com/nz-social-investment-unit
+* Tools will be made publicly available on the SIU GitHub repository https://github.com/nz-social-investment-unit
 * All major releases require an annotated tag.
 
 ```r
 git tag -a v1.1.0 -m "v1.1.0"
 ```
+A badge can then be added to the README of the repository (beneath the title) by including the following:
 
-Refer to our version control document to find out more about passing code through the firewall and how to clone repos to your pc.
+
+```r
+[![GitHub version](https://badge.fury.io/gh/nz-social-investment-unit%2F<<repository_name_here>>.svg)](https://badge.fury.io/gh/nz-social-investment-unit%2<<repository_name_here>>)
+```
+
+where you enter the repository name in the `<<repository_name_here>>` section. For example:
+
+
+```r
+[![GitHub version](https://badge.fury.io/gh/nz-social-investment-unit%2Fsocial_investment_data_foundation.svg)](https://badge.fury.io/gh/nz-social-investment-unit%2Fsocial_investment_data_foundation)
+```
+
+
+
+Refer to our version control document to find out more about passing code through the firewall and how to clone repos to your PC.
 
 
 
 ## Programming practices
 ### Tasks prior to development
 * An objective is required before coding can begin.
-* It must be clear who the user is and what their requirements are. This will ensure fewer subsequent rewrites of the code.
+* It must be clear who the users are and what their requirements are. This will ensure fewer subsequent rewrites of the code.
 * A design phase where process flows and other documentation are developed must be carried out prior to coding. This ensures that individual pieces of code fit together with each other. Note that the design phase may be revisited during the development process.
 
 
 ### Macros and functions
 * Any piece of code that is likely to be reused must be in a SAS macro or an R function or a stored process.
-* Functions must be in a separate script to the analysis script in R.
+* Functions must be in a separate script to the analysis script in R. It is fine to have several related functions in the same R script.
 * SAS macros should be in separate files (one file per macro) and the filename should be the same as the macro name.
 * SAS formats should also be kept in a separate file for ease of code maintenance.
 * All SAS macro should be loaded into the library via sasautos.
@@ -203,7 +214,7 @@ Refer to our version control document to find out more about passing code throug
 
 
 ```sas
-/* Load all the sofie macros automatically */
+/* Load all the macros automatically */
 options obs=MAX mvarsize=max pagesize=132
         append=(sasautos=("&use_case_path\sasautos"));
 
@@ -365,7 +376,7 @@ Assert comments and macro calls are acceptable in SAS. Do not use the sasunit ma
 #### Integration and user acceptance testing
 * Integration testing is required. The main script must run from start to finish without an error.
 * Someone who has not worked on developing the code must be able to figure out how to run the tool/analysis solely using the provided documentation.
-* Testing needs to be done on at least two different environments to ensure that the code is robust.
+* Testing needs to be done in at least two different environments (i.e. find a user outside the SIU) to ensure that the code is robust.
 
 ### Temporary files
 All temporary files in SAS should be deleted at the end of a script temporary files can be identified by the `_temp_` notation. It is recommended to wrap these statements around with a conditional execution based on a debug flag.
@@ -390,7 +401,6 @@ Think through the purpose of a graphic (whether it is exploratory, or part of th
 
 ### Visual Elements
 * All plots must use the siu_theme
-* Note that a contractor has built some SIU themed strictly increasing colour scales for us that can be used for ordered variables
 
 
 
@@ -441,7 +451,7 @@ sofie_wts_freqpoly <-
 ```
 
 * Use the correct fonts via the SIU theme, for text and label geoms in charts as well as for the basic elements.
-* Don't forget the macrons or other special characters eg Maori, whanau, Pakeha (in R, can use "\\u0101" or equivalent instead of "a" to get an a with a macron).
+* Don't forget the macrons or other special characters eg Māori, whānau, Pākehā (in R, can use "\\u0101" or equivalent instead of "a" to get an a with a macron).
 
 
 ```r

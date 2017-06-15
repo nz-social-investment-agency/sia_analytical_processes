@@ -221,11 +221,16 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">SIU Coding Style Guide</h1>
-<h4 class="date"><em>Last updated: June 2017</em></h4>
 
 </div>
 
 
+<style>
+  .title {
+    padding-top: 10px;
+    padding-left: 10px;
+  }
+</style>
 <div id="documentation" class="section level2">
 <h2>Documentation</h2>
 <div id="standardised-headers" class="section level3">
@@ -233,63 +238,53 @@ div.tocify {
 <p>All headers in scripts must use the standardised format. Examples of populated headers are shown below.</p>
 <div id="r-header" class="section level4">
 <h4>R header</h4>
-<pre class="r"><code>### ================================================================================================ ###
-### Title: k10_sense_check.R
-###
-### Description: produce plots that compare the K10 pscyhological distress
-### measure to the SF-36 perceieved disability measure
-###
-### Input: [IDI_Sandpit].[DL-MAA2016-15].[k10_vs_mh_band]
-###
-### Output: comparison_plot = large gg that produces a density plot
-### of those with need and those with little or no need
-### by average SF36 MH score
-###
-### Author: E Walsh
-###
-### Date: 24/2/2017
-###
-### Dependencies: k10_sense_check.sas builds the input table that is queried
-### this can be run through main_sofie.sas
-###
-### SQL query located in sql/k10_vs_sf36_mh_check.sql
-###
-###
-### Notes:
-###
-### Issues:
-###
-### History: 
-### 24 Feb 2017 EW v1
-### ================================================================================================ ###</code></pre>
+<pre class="r"><code># ================================================================================================ #
+# Description: produce plots that compare the K10 pscyhological distress
+# measure to the SF-36 perceieved disability measure
+#
+# Input: [IDI_Sandpit].[DL-MAA2016-15].[k10_vs_mh_band]
+#
+# Output: comparison_plot = large gg that produces a density plot
+# of those with need and those with little or no need
+# by average SF36 MH score
+#
+# Author: E Walsh
+#
+# Dependencies: k10_sense_check.sas builds the input table that is queried
+# this can be run through main_sofie.sas
+#
+# SQL query located in sql/k10_vs_sf36_mh_check.sql
+#
+# Notes:
+#
+# Issues:
+#
+# History (reverse order): 
+# 24 Feb 2017 EW v1
+# ================================================================================================ #</code></pre>
 </div>
 <div id="sas-and-sql-header" class="section level4">
 <h4>SAS and SQL Header</h4>
 <pre class="sas"><code>/*********************************************************************************************************
-TITLE: get_need_profile.sas
-
-DESCRIPTION: Produce descriptive stats around those with an MHA need using the K10 score as
+Description: Produce descriptive stats around those with an MHA need using the K10 score as
 a proxy for need
 
-INPUT:
-sand.mha_pop_sofie_w7_wgt_adj
+Input: sand.mha_pop_sofie_w7_wgt_adj
 
-OUTPUT:
+Output:
 sf_sof_n_XXX = survey freq need cross tabulation output for variable XXX
 sf_sof_n_XXX_rnd = rounded cross tabulation output for variable XXX
 
-AUTHOR: E Walsh
+Author: E Walsh
 
-DATE: 26 Jan 2017
+Dependencies: see main_sofie.sas and run the libnames macros and formats scripts
 
-DEPENDENCIES: see main_sofie.sas and run the libnames macros and formats scripts
-
-NOTES: The sign out rules for SoFIE differ to the standard RR3 rounding. See pp.27-28 of the
+Notes: The sign out rules for SoFIE differ to the standard RR3 rounding. See pp.27-28 of the
 SoFIE User Guide.
 
 Issues:
 
-HISTORY: 
+History (reverse order): 
 26 Jan 2017 EW v1
 *********************************************************************************************************/</code></pre>
 </div>
@@ -335,7 +330,7 @@ HISTORY:
 <h2>Formatting of Code</h2>
 <ul>
 <li>Arithmetic operators should be separated by white space.</li>
-<li>Code must be indented properly (<em>Hint:</em> Use Ctrl A + Ctrl I in SAS)</li>
+<li>Code must be indented properly (<em>Hint:</em> Use Ctrl A + Ctrl I in both SAS and R)</li>
 <li>Code lines generally should not exceed a length of 130 for purposes of readability</li>
 <li>One concept per line (see some examples below)</li>
 </ul>
@@ -361,7 +356,7 @@ domains &lt;- as.data.frame(sofiecostdata  %&gt;%
 <ul>
 <li>docs (documentation to go in here)</li>
 <li>examples (use this if you want a complete self contained example to be provided)</li>
-<li>gitignore (anything we dont want to be seen in a public repo goes in here)</li>
+<li>dev (anything in development that we dont want to be seen in our public repo goes in here)</li>
 <li>include (any code that you would like to reuse from other projects go in here)</li>
 <li>logs (used for long SAS processes that won’t fit in the GUI log)</li>
 <li>output (summary statistics, model output etc)
@@ -385,11 +380,15 @@ domains &lt;- as.data.frame(sofiecostdata  %&gt;%
 <li>Versioning is a must. In the absence of a versioning tool use _v2 as a suffix on filenames, with ample comments in the history section of the code.</li>
 <li><strong>Do not</strong> use your name as a suffix.</li>
 <li>Do not push code that does not run through to the repositories. In the future, hooks will prevent you from doing this.</li>
-<li>Tools will be made publicly available on the SIU github repository <a href="https://github.com/nz-social-investment-unit" class="uri">https://github.com/nz-social-investment-unit</a></li>
+<li>Tools will be made publicly available on the SIU GitHub repository <a href="https://github.com/nz-social-investment-unit" class="uri">https://github.com/nz-social-investment-unit</a></li>
 <li>All major releases require an annotated tag.</li>
 </ul>
 <pre class="r"><code>git tag -a v1.1.0 -m &quot;v1.1.0&quot;</code></pre>
-<p>Refer to our version control document to find out more about passing code through the firewall and how to clone repos to your pc.</p>
+<p>A badge can then be added to the README of the repository (beneath the title) by including the following:</p>
+<pre class="r"><code>[![GitHub version](https://badge.fury.io/gh/nz-social-investment-unit%2F&lt;&lt;repository_name_here&gt;&gt;.svg)](https://badge.fury.io/gh/nz-social-investment-unit%2&lt;&lt;repository_name_here&gt;&gt;)</code></pre>
+<p>where you enter the repository name in the <code>&lt;&lt;repository_name_here&gt;&gt;</code> section. For example:</p>
+<pre class="r"><code>[![GitHub version](https://badge.fury.io/gh/nz-social-investment-unit%2Fsocial_investment_data_foundation.svg)](https://badge.fury.io/gh/nz-social-investment-unit%2Fsocial_investment_data_foundation)</code></pre>
+<p>Refer to our version control document to find out more about passing code through the firewall and how to clone repos to your PC.</p>
 </div>
 <div id="programming-practices" class="section level2">
 <h2>Programming practices</h2>
@@ -397,7 +396,7 @@ domains &lt;- as.data.frame(sofiecostdata  %&gt;%
 <h3>Tasks prior to development</h3>
 <ul>
 <li>An objective is required before coding can begin.</li>
-<li>It must be clear who the user is and what their requirements are. This will ensure fewer subsequent rewrites of the code.</li>
+<li>It must be clear who the users are and what their requirements are. This will ensure fewer subsequent rewrites of the code.</li>
 <li>A design phase where process flows and other documentation are developed must be carried out prior to coding. This ensures that individual pieces of code fit together with each other. Note that the design phase may be revisited during the development process.</li>
 </ul>
 </div>
@@ -405,13 +404,13 @@ domains &lt;- as.data.frame(sofiecostdata  %&gt;%
 <h3>Macros and functions</h3>
 <ul>
 <li>Any piece of code that is likely to be reused must be in a SAS macro or an R function or a stored process.</li>
-<li>Functions must be in a separate script to the analysis script in R.</li>
+<li>Functions must be in a separate script to the analysis script in R. It is fine to have several related functions in the same R script.</li>
 <li>SAS macros should be in separate files (one file per macro) and the filename should be the same as the macro name.</li>
 <li>SAS formats should also be kept in a separate file for ease of code maintenance.</li>
 <li>All SAS macro should be loaded into the library via sasautos.</li>
 <li>Where possible, do not define macros within macros. This tends to be inefficient and degrades code readability.</li>
 </ul>
-<pre class="sas"><code>/* Load all the sofie macros automatically */
+<pre class="sas"><code>/* Load all the macros automatically */
 options obs=MAX mvarsize=max pagesize=132
         append=(sasautos=(&quot;&amp;use_case_path\sasautos&quot;));
 </code></pre>
@@ -536,7 +535,7 @@ checkException(&lt;function_to_test&gt;(&quot;xx&quot;))</code></pre>
 <ul>
 <li>Integration testing is required. The main script must run from start to finish without an error.</li>
 <li>Someone who has not worked on developing the code must be able to figure out how to run the tool/analysis solely using the provided documentation.</li>
-<li>Testing needs to be done on at least two different environments to ensure that the code is robust.</li>
+<li>Testing needs to be done in at least two different environments (i.e. find a user outside the SIU) to ensure that the code is robust.</li>
 </ul>
 </div>
 </div>
@@ -566,7 +565,6 @@ run;</code></pre>
 <h3>Visual Elements</h3>
 <ul>
 <li>All plots must use the siu_theme</li>
-<li>Note that a contractor has built some SIU themed strictly increasing colour scales for us that can be used for ordered variables</li>
 </ul>
 <pre class="r"><code># example of using the SIU theme
 sofie_wts_freqpoly &lt;- 
@@ -608,7 +606,7 @@ sofie_wts_freqpoly &lt;-
  coord_flip() </code></pre>
 <ul>
 <li>Use the correct fonts via the SIU theme, for text and label geoms in charts as well as for the basic elements.</li>
-<li>Don’t forget the macrons or other special characters eg Maori, whanau, Pakeha (in R, can use “\u0101” or equivalent instead of “a” to get an a with a macron).</li>
+<li>Don’t forget the macrons or other special characters eg Māori, whānau, Pākehā (in R, can use “\u0101” or equivalent instead of “a” to get an a with a macron).</li>
 </ul>
 <pre class="r"><code>plot(1:10, 1:10, main = &quot;M\u0101ori with a macron&quot;)</code></pre>
 </div>
