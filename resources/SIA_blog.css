@@ -1,0 +1,57 @@
+#header {
+   background-color:#F47C20;
+   background-image:url(./sia_logo.svg);
+   background-repeat: no-repeat;
+   background-position: 100%;
+   background-size: 20%;
+   color: white;
+   border-radius: 5px;
+   padding-left: 10px;
+   padding-bottom: 5px;
+}
+
+.active.list-group-item, .active.list-group-item:focus, .active.list-group-item:hover{
+   background-color:#F47C20;
+   border-color:#fff;
+}
+
+.title {
+  padding-top: 15px;
+  padding-left: 10px;
+  padding-right: 15%;
+}
+
+/* adding siu standard header formats */
+h1 {
+  font-size: 24pt;
+  font-family:  "Century Gothic";
+  color: #FFFFFF;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 18pt;
+  font-family:  "Century Gothic";
+  color: #588D97;
+  font-weight: bold;
+}
+
+h3 {
+  font-size: 14pt;
+  font-family:  "Century Gothic";
+  color: #588D97;
+  font-weight: bold;
+}
+
+h4 {
+  font-size: 12pt;
+  font-family:  "Century Gothic";
+  color: #414258;
+  font-weight: bold;
+}
+
+p {
+  font-size: 11pt;
+  font-family:  "Arial";
+  color: #000000;
+}
