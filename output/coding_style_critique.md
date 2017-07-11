@@ -1,22 +1,4 @@
----
-title: "Critique of our Coding Style"
-# author: 'Author: Evidence and Insights'
-# date: 'July 2017'
-knit: (function(inputFile, encoding) { 
-      out_dir <- "output";
-      rmarkdown::render(inputFile,
-                        encoding=encoding, 
-                        output_file=file.path("..", out_dir, "coding_style_critique.html")) })
-output:
-  html_document:
-    css: ../resources/SIA_blog.css
-    keep_md: yes
-    self_contained: yes
-    toc: false
-    toc_float: 
-      collapsed: false
-      
----
+# Critique of our Coding Style
 
 ## Thoughts on minimum code sharing data standards – using the SIA's social housing repository as an example of the good, the bad and the ugly
 

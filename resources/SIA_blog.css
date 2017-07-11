@@ -2,8 +2,8 @@
    background-color:#F47C20;
    background-image:url(./sia_logo.svg);
    background-repeat: no-repeat;
-   background-position: 100%;
-   background-size: 20%;
+   background-position: 115%;
+   background-size: 40%;
    color: white;
    border-radius: 5px;
    padding-left: 10px;
@@ -41,6 +41,7 @@ h3 {
   font-family:  "Century Gothic";
   color: #588D97;
   font-weight: bold;
+  padding-top: 1%;
 }
 
 h4 {
@@ -48,6 +49,7 @@ h4 {
   font-family:  "Century Gothic";
   color: #414258;
   font-weight: bold;
+  padding-top: 1%;
 }
 
 p {

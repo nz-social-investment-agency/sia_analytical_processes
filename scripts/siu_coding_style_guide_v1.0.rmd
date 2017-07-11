@@ -2,6 +2,11 @@
 title: "SIU Coding Style Guide"
 # author: 'Author: Evidence and Insights'
 # date: 'Last updated: June 2017'
+knit: (function(inputFile, encoding) { 
+      out_dir <- "output";
+      rmarkdown::render(inputFile,
+                        encoding=encoding, 
+                        output_file=file.path("..", out_dir, "siu_coding_style_guide_v1.0.html")) })
 output:
   html_document:
     css: ../resources/SIU_style_guide_template.css
