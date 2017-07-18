@@ -18,11 +18,11 @@ output:
       
 ---
 
-## Thoughts on minimum code sharing data standards – using the SIA's social housing repository as an example of the good, the bad and the ugly
+## Thoughts on minimum code sharing data standards - using the SIA's social housing repository as an example of the good, the bad and the ugly
 
 The Social Investment Agency's Evidence and Insights (E&I) team consists of 9 people who regularly write code for an ever growing set of reusable tools. Writing code is one thing, but when you have to make sure the rest of the team can follow it, it runs error free, and is easy to debug - that is an entirely different kettle of fish. That's where coding standards come in.
 
-Until recently, the team's coding standards remained in the heads of individual team members. The team has taken some time to discuss and commit these [standards](https://nz-social-investment-agency.github.io/siu_analytical_processes/output/siu_coding_style_guide_v1.0.html) to paper (or, should I say, to `html`).
+Until recently, the team's coding standards remained in the heads of individual team members. The team has taken some time to discuss and commit these [standards](https://nz-social-investment-agency.github.io/sia_analytical_processes/output/siu_coding_style_guide_v1.0.html) to paper (or, should I say, to `html`).
 
 Some of our GitHub repositories were developed prior to the standards being published so we thought it would be a good idea to review one of these to see what was done well and what could be improved upon. The repository that contains the code used in our [social housing analysis](https://github.com/nz-social-investment-agency/social_housing) was chosen for review.
 
@@ -52,7 +52,7 @@ The social housing repository has step by step instructions in the `README` for 
 #### Using parameters means that anyone can run the code
 We share our code with the intention that people outside the SIA are be able to run it with ease. With this in mind the important variables in the social housing code have been parameterised.
 
-File paths are made to be relative by making use of macro variables `sasdir` and `sasdirgen`. This means that there are only two file paths that need to be specified. These are at the top of the script where they can clearly be seen. Once a user has specified them they don’t need to worry about getting `Access Denied` errors when they try to access a file directory they don’t have access to.
+File paths are made to be relative by making use of macro variables `sasdir` and `sasdirgen`. This means that there are only two file paths that need to be specified. These are at the top of the script where they can clearly be seen. Once a user has specified them they don't need to worry about getting `Access Denied` errors when they try to access a file directory they don't have access to.
 
 <div class="jumbotron">
 ![](../resources/good_parameterisation_main_script.png)
@@ -89,7 +89,7 @@ Headers should ideally have a `dependencies` section so it is clear what each sc
 
 Notes and issues with the code should also be raised in the header so that users have all the key information. The original E&I headers had most of this information but, with staff turnover, some people were not aware of this. This highlights the need for standard header templates.
 
-Our newly-published [standardised headers](https://nz-social-investment-agency.github.io/siu_analytical_processes/output/siu_coding_style_guide_v1.0.html#standardised_headers) are available on GitHub.
+Our newly-published [standardised headers](https://nz-social-investment-agency.github.io/sia_analytical_processes/output/siu_coding_style_guide_v1.0.html#standardised_headers) are available on GitHub.
 
 #### The folder structure should be intuitive and only necessary files should be in the repository
 Originally the repository didn't contain a `docs` folder. We can tell this because GitHub keeps a history of all changes and we can see that the documentation was sitting in the top level of the repository.
@@ -158,18 +158,19 @@ The social housing code has not been fully optimised. Tuning the code could help
 * Including a README with step by step instructions.
 * Parameterising key variables and using relative paths means that anyone can reuse the code.
 * The code is modular meaning that the code can be reused in projects over and over again.
+* Having a `main` script also means that we can do testing to ensure that code runs end to end using just one script. This makes it a lot easier for anyone new picking up the code.
 
 #### The bad
 
-* Scripts should have headers that include all the key information such as inputs, outputs, dependencies and histories. Our new [standardised headers](https://nz-social-investment-agency.github.io/siu_analytical_processes/output/siu_coding_style_guide_v1.0.html#standardised_headers) are available on GitHub.
+* Scripts should have headers that include all the key information such as inputs, outputs, dependencies and histories. Our new [standardised headers](https://nz-social-investment-agency.github.io/sia_analytical_processes/output/siu_coding_style_guide_v1.0.html#standardised_headers) are available on GitHub.
 * The folder structure needs to be intuitive and contain only necessary files. We now actively think about the folder structure during the design phase prior to doing any coding.
 * The code could be fully optimised for performance to improve processing time or memory usage. Currently, it is only partially optimised.
 
 #### The ugly
 
 * SAS EG projects do not help with reusability. Our code is modular and reusable by placing each macro in its own script with the file name matching the macro name and sourcing them all via a `sasautos` call. There is no need for SAS EG projects.
-* One of the SIA’s coding conventions involves appropriate naming of file scripts. We avoid spaces in file names because they can cause problems in the command line and are annoying to escape. We also avoid numbering the scripts. Instead the order of execution is dictated by a `main` script. That way if we need to add a new script in the middle we don’t need to rename it. 
-* Having a `main` script also means that we can do testing to ensure that code runs end to end using just one script. This makes it a lot easier for anyone new picking up the code.
+* One of the SIA's coding conventions involves appropriate naming of file scripts. We avoid spaces in file names because they can cause problems in the command line and are annoying to escape. We also avoid numbering the scripts. Instead the order of execution is dictated by a `main` script. That way if we need to add a new script in the middle we don't need to rename it. 
+
 
 ### So what do you think? Do you agree with the minimum viable product code sharing standards we have published? If you have anything to share please let us know. 
  

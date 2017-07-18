@@ -121,10 +121,10 @@ $(document).ready(function () {
 </div>
 
 
-<div id="thoughts-on-minimum-code-sharing-data-standards-using-the-sias-social-housing-repository-as-an-example-of-the-good-the-bad-and-the-ugly" class="section level2">
-<h2>Thoughts on minimum code sharing data standards – using the SIA’s social housing repository as an example of the good, the bad and the ugly</h2>
+<div id="thoughts-on-minimum-code-sharing-data-standards---using-the-sias-social-housing-repository-as-an-example-of-the-good-the-bad-and-the-ugly" class="section level2">
+<h2>Thoughts on minimum code sharing data standards - using the SIA’s social housing repository as an example of the good, the bad and the ugly</h2>
 <p>The Social Investment Agency’s Evidence and Insights (E&amp;I) team consists of 9 people who regularly write code for an ever growing set of reusable tools. Writing code is one thing, but when you have to make sure the rest of the team can follow it, it runs error free, and is easy to debug - that is an entirely different kettle of fish. That’s where coding standards come in.</p>
-<p>Until recently, the team’s coding standards remained in the heads of individual team members. The team has taken some time to discuss and commit these <a href="https://nz-social-investment-agency.github.io/siu_analytical_processes/output/siu_coding_style_guide_v1.0.html">standards</a> to paper (or, should I say, to <code>html</code>).</p>
+<p>Until recently, the team’s coding standards remained in the heads of individual team members. The team has taken some time to discuss and commit these <a href="https://nz-social-investment-agency.github.io/sia_analytical_processes/output/siu_coding_style_guide_v1.0.html">standards</a> to paper (or, should I say, to <code>html</code>).</p>
 <p>Some of our GitHub repositories were developed prior to the standards being published so we thought it would be a good idea to review one of these to see what was done well and what could be improved upon. The repository that contains the code used in our <a href="https://github.com/nz-social-investment-agency/social_housing">social housing analysis</a> was chosen for review.</p>
 <div id="there-are-things-we-did-well-with-the-social-housing-code" class="section level3">
 <h3>There are things we did well with the social housing code</h3>
@@ -199,7 +199,7 @@ $(document).ready(function () {
 </div>
 <p>Headers should ideally have a <code>dependencies</code> section so it is clear what each script depends on.</p>
 <p>Notes and issues with the code should also be raised in the header so that users have all the key information. The original E&amp;I headers had most of this information but, with staff turnover, some people were not aware of this. This highlights the need for standard header templates.</p>
-<p>Our newly-published <a href="https://nz-social-investment-agency.github.io/siu_analytical_processes/output/siu_coding_style_guide_v1.0.html#standardised_headers">standardised headers</a> are available on GitHub.</p>
+<p>Our newly-published <a href="https://nz-social-investment-agency.github.io/sia_analytical_processes/output/siu_coding_style_guide_v1.0.html#standardised_headers">standardised headers</a> are available on GitHub.</p>
 </div>
 <div id="the-folder-structure-should-be-intuitive-and-only-necessary-files-should-be-in-the-repository" class="section level4">
 <h4>The folder structure should be intuitive and only necessary files should be in the repository</h4>
@@ -277,12 +277,13 @@ $(document).ready(function () {
 <li>Including a README with step by step instructions.</li>
 <li>Parameterising key variables and using relative paths means that anyone can reuse the code.</li>
 <li>The code is modular meaning that the code can be reused in projects over and over again.</li>
+<li>Having a <code>main</code> script also means that we can do testing to ensure that code runs end to end using just one script. This makes it a lot easier for anyone new picking up the code.</li>
 </ul>
 </div>
 <div id="the-bad" class="section level4">
 <h4>The bad</h4>
 <ul>
-<li>Scripts should have headers that include all the key information such as inputs, outputs, dependencies and histories. Our new <a href="https://nz-social-investment-agency.github.io/siu_analytical_processes/output/siu_coding_style_guide_v1.0.html#standardised_headers">standardised headers</a> are available on GitHub.</li>
+<li>Scripts should have headers that include all the key information such as inputs, outputs, dependencies and histories. Our new <a href="https://nz-social-investment-agency.github.io/sia_analytical_processes/output/siu_coding_style_guide_v1.0.html#standardised_headers">standardised headers</a> are available on GitHub.</li>
 <li>The folder structure needs to be intuitive and contain only necessary files. We now actively think about the folder structure during the design phase prior to doing any coding.</li>
 <li>The code could be fully optimised for performance to improve processing time or memory usage. Currently, it is only partially optimised.</li>
 </ul>
@@ -292,7 +293,6 @@ $(document).ready(function () {
 <ul>
 <li>SAS EG projects do not help with reusability. Our code is modular and reusable by placing each macro in its own script with the file name matching the macro name and sourcing them all via a <code>sasautos</code> call. There is no need for SAS EG projects.</li>
 <li>One of the SIA’s coding conventions involves appropriate naming of file scripts. We avoid spaces in file names because they can cause problems in the command line and are annoying to escape. We also avoid numbering the scripts. Instead the order of execution is dictated by a <code>main</code> script. That way if we need to add a new script in the middle we don’t need to rename it.</li>
-<li>Having a <code>main</code> script also means that we can do testing to ensure that code runs end to end using just one script. This makes it a lot easier for anyone new picking up the code.</li>
 </ul>
 </div>
 </div>
