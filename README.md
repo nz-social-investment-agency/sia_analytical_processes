@@ -3,8 +3,8 @@
 Content related to process and best practice for the analytical team at the SIA.
 
 ## Links
-* [Style Guide](https://nz-social-investment-agency.github.io/siu_analytical_processes/output/siu_coding_style_guide_v1.0.html)
-* [Code Style Critique](https://nz-social-investment-agency.github.io/siu_analytical_processes/output/coding_style_critique.html)
+* [Style Guide](https://nz-social-investment-agency.github.io/sia_analytical_processes/output/siu_coding_style_guide_v1.0.html)
+* [Code Style Critique](https://nz-social-investment-agency.github.io/sia_analytical_processes/output/coding_style_critique.html)
 
 ## Getting Help
 For more help/guidance email info@sia.govt.nz 
