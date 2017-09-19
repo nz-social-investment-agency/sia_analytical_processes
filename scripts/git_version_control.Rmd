@@ -34,13 +34,13 @@ If Git is not readily available or there were issues installing it that are yet 
 2.	Download 32 bit build (for now - hopefully the 64 bit laptops will come soon)
 3.	Run the executable to run the setup wizard.
 4.	Within the setup wizard, do the following:
-      1.    On the information screen, click next.
-      2.    On the components screen, leave the default components selected and click next.
-      3.    On the path environment screen, select use Git from Bash only before clicking next.
-      4.    On the backend screen, select open ssl library and click next.
-      5.    On the conventions screen, select windows style commit unix style line endings and click next (this is because we may work on cross platform projects).
-      6.    On the emulator screen, select MinTTY as a terminal emulator and click next.
-      7.    On the extra options screen, enable caching and enable the Git credential manager before clicking install.
+      *    On the information screen, click next.
+      *    On the components screen, leave the default components selected and click next.
+      *    On the path environment screen, select use Git from Bash only before clicking next.
+      *    On the backend screen, select open ssl library and click next.
+      *    On the conventions screen, select windows style commit unix style line endings and click next (this is because we may work on cross platform projects).
+      *    On the emulator screen, select MinTTY as a terminal emulator and click next.
+      *    On the extra options screen, enable caching and enable the Git credential manager before clicking install.
 
 5.    Open Git Bash and run the following commands can be run **without** replacing the items in the angled brackets.
 ```{r git_config_proxies, engine='bash',eval=FALSE}
@@ -49,7 +49,7 @@ git config --global https.proxy https://<user_name>:<password>@<proxy_server>:<p
 
 ```
 
-6.    Open the `gitconfig` file. It can be found either in the installation folder (C:\Program Files\Git\etc\) or within your documents folder (C:\Users\<username>). It can be editted with a text editor, such as Notepad. You should see the two commands that you typed in step 5.
+6.    Open the `gitconfig` file. It can be found either in the installation folder (C:\Program Files\Git\etc\) or within your documents folder (C:\Users\<username>). It can be edited with a text editor, such as Notepad. You should see the two commands that you typed in step 5.
 
 7.    Enter your work `username` and `password`, replacing the `<user_name>` and `<password>` text already in this file. Note that you need to enter these details in both locations. If your password has special symbols refer to this [website](https://www.w3schools.com/tags/ref_urlencode.asp) for the appropriate percent encoding. For example the password !qwerty123 would be specified as %21qwerty123 in the proxy.
 
@@ -97,9 +97,9 @@ It is easiest to do this via the GitHub website rather than the command line
 
 
 ### Cloning a repositry
-Cloning is a Git command that takes a repositry from the remote repository (i.e. from GitHub) and creates a local copy on your machine. You can then make changes and subsequently push them back to the remote repository.
+Cloning is a Git command that takes a repository from the remote repository (i.e. from GitHub) and creates a local copy on your machine. You can then make changes and subsequently push them back to the remote repository.
 
-Within Bash, begin by changing directory to your desired working location (e.g. `cd C:/NotBackedUp`). Then enter the following command, specifying the name of the desired Git repositry (social_investment_data_foundation.git in the example code below).
+Within Bash, begin by changing directory to your desired working location (e.g. `cd C:/NotBackedUp`). Then enter the following command, specifying the name of the desired Git repository (social_investment_data_foundation.git in the example code below).
 
 ```{r git_cloning, engine='bash',eval=FALSE}
 # the --recursive option ensure that all dependent repositories are also cloned
@@ -152,14 +152,14 @@ v1.1.1          v1.1.1
 
 
 ### Switching a repositry from private to public
-Only the person who created the repo or the owner of the organisation can modify the settings of a repository. **Before** making a repositry public you must have sign off from the appropriate manager.
+Only the person who created the repo or the owner of the organisation can modify the settings of a repository. **Before** making a repository public you must have sign off from the appropriate manager.
 
 <div class="jumbotron">
 ![](../resources/git_settings.png)
 
 </div>
 
-1. In GitHub click on the repositry name.
+1. In GitHub click on the repository name.
 2. Click on the `Settings` tab.
 3. Scroll down to `Danger Zone`.
 4. Click on "make this repository public".
@@ -248,7 +248,7 @@ GitHub Pages is a site hosting service which can display any HTML file nicely. I
 2. Select `master branch` (alternatively gh_pages).
 3. Click `Save`.
 4. Go to the `README` to add a hyperlink to the relevant pages. If there is enough content you may wish to create an index.html so that you have a nicer looking home page.
-5. The hyperlink is similar to paths in the repositry. The only thing is the organisation / profile should have `.github.io` after it. An example of a GitHub page hyper link is 
+5. The hyperlink is similar to paths in the repository. The only thing is the organisation / profile should have `.github.io` after it. An example of a GitHub page hyper link is 
 `https://nz-social-investment-agency.github.io/sia_analytical_processes/output/coding_style_critique.html`
 
 
@@ -286,6 +286,6 @@ An example of a coding standard hook can be found [here](https://gist.github.com
 * [SIA coding conventions](https://github.com/nz-social-investment-agency/sia_analytical_processes)
 
 
-Last updated Sep-2017 by SA on bahalf of CM
+Last updated Sep-2017 by EW, SA and CM
 
 
