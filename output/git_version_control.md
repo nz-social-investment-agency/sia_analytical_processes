@@ -1,19 +1,21 @@
 # Version Control with Git
 
 # Topics
-Version control allows for a team to collaborate on code without overwriting changes and allows people to track how the code evolved. It makes it very easy to create and move between different versions.
+Version control allows for a team to collaborate on code without overwriting changes and allows people to track how the code evolved. It makes it very easy to create and move between different versions of your code.
 
 One of the reasons we chose Git as our version control system because it is decentralised. This means that it treats each person's copy as their own repository where they can track changes before sharing the code more widely with the team. It also tracks changes in content rather than files so it takes up a lot less space compared to some other version control tools.
 
 We use GitHub as the hosting service for our Git repositories. GitHub is one of the more popular, widely known public hosting services. While repositories are public by default, they can also be made private if required.
+
+This document outlines how the SIA use Git and shows a few illustrative examples. It could potentially be useful to other organisations so it is available on our Github page. Note that because it is specifically geared towards how the SIA do version control some of the information specific to SIA such as proxies and port numbers are hidden in our document management system. You will not be able to open the file references.
 
 ## The Basics
 
 ### Setting up Git on your machine
 If Git is not readily available or there were issues installing it that are yet to be resolved then it can be installed manually using the following steps.
 
-1.	Go to the [webpage](https://git-scm.com/download/win) where you can download Git
-2.	Download 32 bit build (for now - hopefully the 64 bit laptops will come soon)
+1.	Go to the [webpage](https://git-scm.com/download/win) where you can download Git.
+2.	Download 32 bit build (for now - hopefully the 64 bit laptops will come soon).
 3.	Run the executable to run the setup wizard.
 4.	Within the setup wizard, do the following:
       *    On the information screen, click next.
@@ -32,11 +34,11 @@ git config --global https.proxy https://<user_name>:<password>@<proxy_server>:<p
 
 ```
 
-6.    Open the `gitconfig` file. It can be found either in the installation folder (C:\Program Files\Git\etc\) or within your documents folder (C:\Users\<username>). It can be edited with a text editor, such as Notepad. You should see the two commands that you typed in step 5.
+6.    Open the `gitconfig` file. It can be found either in the installation folder (C:\\Program Files\\Git\\etc\\) or within your documents folder (C:\\Users\\\<username\>). It can be edited with a text editor, such as Notepad. You should see the two commands that you typed in step 5.
 
 7.    Enter your work `username` and `password`, replacing the `<user_name>` and `<password>` text already in this file. Note that you need to enter these details in both locations. If your password has special symbols refer to this [website](https://www.w3schools.com/tags/ref_urlencode.asp) for the appropriate percent encoding. For example the password !qwerty123 would be specified as %21qwerty123 in the proxy.
 
-8. Specify the `proxy server` and the `port number`, replacing the `<proxy_server>` and `<port_number>` text already in the file. Be sure to enter these details in both locations. If you do not know what these are then ask a team member (they can find these values by checking their `gitconfig` file.
+8. Specify the `proxy server` and the `port number`, replacing the `<proxy_server>` and `<port_number>` text already in the file. Be sure to enter these details in both locations. If you do not know what these are you can find them in `A9977164`.
 
 **Do not** type your details (particularly your password) in directly via the terminal in step 5. Your password will be retained in the history for everyone who uses the machine to see.
 
@@ -58,15 +60,24 @@ sudo apt-get install build-essential libssl-dev libcurl4-gnutls-dev libexpat1-de
 sudo apt-get install git
 ```
 
-Then follow steps 5 to 9 as given above.
+Then follow steps 5 to 9 as given above. Note that the location of the config file will probably be in `/home/`.
 
-### The different working areas and repositories
-*Coming Soon*
+### Git workflow
+The workflow is represented below. The working area is where you will create new files and make changes to them. For SIA this is on the C drive. When you are ready you can add them to a staging area known as the index which keeps track of all the changes made. Once your are happy you can commit this to the local repository. When you are ready to share with everyone you can push the changes through to the remote repository.
 
-A very good interactive Git cheat-sheet detailing all the different commands can be found [here](http://ndpsoftware.com/git-cheatsheet.html)
+Before making changes it is always a good idea to check you have the latest remote copy. You can pull this straight to your working area or you can fetch it so that it is in your local repository. From there you can check all the changes before merging it with your working copy.
 
-### Setting up a new repositry
-It is easiest to do this via the GitHub website rather than the command line
+<div class="jumbotron">
+![](../resources/git_workflow.png)
+
+</div>
+
+A very good interactive Git cheat-sheet detailing all the different commands can be found [here](http://ndpsoftware.com/git-cheatsheet.html).
+
+### Setting up a new repository
+A repository is the structure that holds all our code. The general rule we have is one repository per main script. The exception to this is when we do a project that involves analysing a topic in the IDI. The data extraction is done in SQL, the data wrangling is done in SAS and the analysis is done in R. Since proc iml is not set up in the IDI it makes it difficult to have a single main script.
+
+It is easiest to set up a new repository via the GitHub website rather than the command line
 
 <div class="jumbotron">
 ![](../resources/git_new_repo.png)
@@ -78,10 +89,10 @@ It is easiest to do this via the GitHub website rather than the command line
 3. Specify a sentence to describe the repository.
 4. Ensure the repository is set to private (the manager must give the green light before a repository is made public).
 5. Check the "initialise with a README" box
-6. Add a license. We use `GNU GPL v3.0` for our code because we want this work and derivatives to be available under the same open license. Justification for this can be found in our document management system in the file `A9536265`. This document was informed partly by [choosealicense.com](https://choosealicense.com/), [NZGOAL2](https://www.ict.govt.nz/guidance-and-resources/open-government/new-zealand-government-open-access-and-licensing-nzgoal-framework/nzgoal2/) and information on the [Creative Commons website](https://creativecommons.org/faq/#can-i-apply-a-creative-commons-license-to-software)
+6. Add a license. We use `GNU GPL v3.0` for our code because we want this work and derivatives to be available under the same open license. Justification for this can be found in our document management system in the file `A9536265`. This document was informed partly by [choosealicense.com](https://choosealicense.com/), [NZGOAL2](https://www.ict.govt.nz/guidance-and-resources/open-government/new-zealand-government-open-access-and-licensing-nzgoal-framework/nzgoal2/) and information on the [Creative Commons website](https://creativecommons.org/faq/#can-i-apply-a-creative-commons-license-to-software).
 
 
-### Cloning a repositry
+### Cloning a repository
 Cloning is a Git command that takes a repository from the remote repository (i.e. from GitHub) and creates a local copy on your machine. You can then make changes and subsequently push them back to the remote repository.
 
 Within Bash, begin by changing directory to your desired working location (e.g. `cd C:/NotBackedUp`). Then enter the following command, specifying the name of the desired Git repository (social_investment_data_foundation.git in the example code below).
@@ -94,7 +105,7 @@ git clone --recursive https://github.com/nz-social-investment-agency/social_inve
 ```
 
 ### Pushing your changes to GitHub
-To push your changes through to the remote repository it helps to refer to the section called [The different working areas and repositories](#the-different-working-areas-and-repositories)
+To push your changes through to the remote repository it helps to refer to the section called [Git workflow](#git-workflow).
 
 For those who are familiar with other version control tools like subversion, the most common mistake is forgetting to add the files to the index. Make sure you add the files you want to commit before you commit the files.
 
@@ -115,10 +126,10 @@ git commit -m "skeleton structure"
 git push origin master
 ```
 
-### Tagging your repositry
-We chose to use annotated tags because they allow for messages, dates and authors to be specified.
+### Tagging your repository
+Tags are references that point to a particular commit. Our tags are named using [semantic versioning](http://semver.org/). We chose to use annotated tags because they allow for messages, dates and authors to be specified.
 
-**Do not use lightweight tags** (tags without options) because they only contain the SHA number
+**Do not use lightweight tags** (tags without options) because they only contain the SHA number.
 
 Signed tags could be used to check that the tag was created by an authorised person. At this point in time it is probably not required.
 
@@ -140,8 +151,8 @@ v1.1.1          v1.1.1
 ```
 
 
-### Switching a repositry from private to public
-Only the person who created the repo or the owner of the organisation can modify the settings of a repository. **Before** making a repository public you must have sign off from the appropriate manager.
+### Switching a repository from private to public
+A publicly available repository means anyone with an internet connection can see the repository. Only the person who created the repo or the owner of the organisation can modify the settings of a repository. **Before** making a repository public you must have sign off from the appropriate manager.
 
 <div class="jumbotron">
 ![](../resources/git_settings.png)
@@ -152,12 +163,13 @@ Only the person who created the repo or the owner of the organisation can modify
 2. Click on the `Settings` tab.
 3. Scroll down to `Danger Zone`.
 4. Click on "make this repository public".
-5. Type the repository name in the box and click the button below
+5. Type the repository name in the box and click the button below.
 
 
 ## The more challenging tasks
 
-### Dealing with repositry dependencies (submodules)
+### Dealing with repository dependencies (submodules)
+Submodules are a way of incorporating code from another repository. They are very handy because as the external repository gets updated you can also update the code in your submodule. It saves having to create multiple copies of code that all require manual updating.
 
 ```r
 # make sure you are in your working directory
@@ -175,6 +187,11 @@ git push origin master
 ```
 
 ### Closing issues with commit messages
+Issues are a way of tracking tasks,bugs and requested enhancements.
+<div class="jumbotron">
+![](../resources/git_issues.png)
+
+</div>
 Issues can be automatically closed via the commit by using a key word and an issue number.
 
 Key words include: close, closes, closed, fix, fixes, fixed, resolve, resolves and resolved.
@@ -188,9 +205,6 @@ git log --oneline
 86eeddb issue fix #1 readme doesnt contain expected output
 
 ```
-
-### Working on an older version (detached head state)
-*Coming Soon*
 
 ### Retrospectively adding a tag
 If code has been pushed to the remote repository and we realise several commits later that we forgot to tag an earlier commit it can be retrospectively added. An example is shown below. It requires knowing the SHA number of the commit you want to tag. This can be retrieved from the logs or from the repo on GitHub.
@@ -257,18 +271,21 @@ git clone https://github.com/nz-social-investment-agency/outcomes-measurement.wi
 The resulting folders are then zipped and stored in the folder `qA537714`. These should be updated at least every year.
 
 ### Troubleshooting - cannot connect
-If you try to clone something and it does not work check the following
+If you try to clone or push changes to the remote repository and it does not work check the following
 
 * Is the repository name correct (the easiest thing to do is go to the GitHub website find the repository and copy and paste the URL)?
 * Have you spelled the http proxy and https proxy correctly in the `gitconfig` file?
 * Have you recently changed your log in/password? If so, make sure you update your `gitconfig` file.
 
 
-### Branching
-*Coming Soon*
+### Branching and Merging
+Branching creates a separate versioning line that will not muck up the production line (master). This can be used to create fixes before combining (merging) them with the master line, add new enhancements before merging them back to master and so on.
 
-### Merging
-*Coming Soon*
+We need to test our code and sign it out of the IDI before we can push it through to master. Effectively our branching is done manually in the IDI because currently there are no versioning tools in the IDI. Pushing our signed out changes to the remote repository is effectively our version of merging.
+
+For more information on how to do proper branching and merging in Git [click here](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging).
+
+
 
 ### Hooks
 Hooks are little scripts that are triggered during an event like `commit` or `push`. The most useful hook for the SIA would probably be one that enforces coding standards. Such a hook has not been implemented yet.
