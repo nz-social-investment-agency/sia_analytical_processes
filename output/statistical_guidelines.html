@@ -227,7 +227,7 @@ div.tocify {
 
 <div id="topics" class="section level1">
 <h1>Topics</h1>
-<p>These statistical guidelines represent preferences for statistical inference. The original list was created by one of the former M&amp;I General Managers, <a href="http://ellisp.github.io/">Peter Ellis</a> and extended by the M&amp;I senior data scientists.</p>
+<p>These statistical guidelines represent preferences for statistical inference used by the M&amp;I team. The original list was created by one of the former M&amp;I General Managers, <a href="http://ellisp.github.io/">Peter Ellis</a> and extended by the M&amp;I senior data scientists.</p>
 <div id="planning" class="section level2">
 <h2>Planning</h2>
 <ol style="list-style-type: decimal">
@@ -237,13 +237,14 @@ div.tocify {
 <ul>
 <li>prediction/forecasting,</li>
 <li>population estimation</li>
-<li>theoretical understanding and adapt the modelling strategy appropriately.</li>
+<li>theoretical understanding</li>
 </ul>
+<p>and adapt the modelling strategy appropriately.</p>
 </div>
 <div id="data-preparation" class="section level2">
 <h2>Data preparation</h2>
 <ol style="list-style-type: decimal">
-<li>Use <strong>multiple imputation</strong> to impute missing values. An example of using multivariate imputation by chained equations is shown below</li>
+<li>Use <strong>multiple imputation</strong> to impute missing values. An example of using multivariate imputation by chained equations is shown below.</li>
 </ol>
 <pre class="r"><code>library(mice)
 
@@ -268,13 +269,13 @@ imputed_num &lt;- mothers_imputed %&gt;%
 <div id="modelling" class="section level2">
 <h2>Modelling</h2>
 <ol style="list-style-type: decimal">
-<li>Consider <strong>robust methods</strong> when appropriate to the question – e.g. trimmed means rather than means, robust regression rather than ordinary least squares.</li>
-<li>Two-way cross tabulations can be useful for presentation and exploration, what is better is a <strong>single general model</strong> that looks at the effects of various variables while controlling for the others.</li>
-<li>Confidence or credibility intervals for <strong>effect sizes</strong> are better than hypothesis tests when there’s a choice.<br />
+<li>Consider <strong>robust methods</strong> when appropriate to the question - e.g. trimmed means rather than means, robust regression rather than ordinary least squares.</li>
+<li>Two-way cross tabulations can be useful for presentation and exploration, what is better is a <strong>single general model</strong> (additive and not saturated) that looks at the effects of various variables while controlling for the others.</li>
+<li>Confidence or credibility intervals for <strong>effect sizes</strong> are better than hypothesis tests when there is a choice.<br />
 </li>
 <li>Use <strong>prediction intervals</strong> when forecasting or constructing prediction individual results. These intervals are wider than confidence intervals for effects sizes since it takes into account the uncertainty in the population estimate and the data scatter.</li>
 <li>The <strong>humble out of the box tests</strong>, including simple Chi Square tests of independence between two variables in cross tabulations with counts, do have their place. Be careful when the sample sizes are very large - everything will probably look significant.</li>
-<li>If it’s important enough to justify the effort then correct for <strong>multiple comparisons</strong>. If the correction is not justified then keep in mind for interpretation. An example of Tukey’s multiple comparison is shown below for R and SAS</li>
+<li>If it is important enough to justify the effort then correct for <strong>multiple comparisons</strong>. If the correction is not justified then keep in mind for interpretation. An example of Tukey’s multiple comparison is shown below for R and SAS.</li>
 </ol>
 <pre class="r"><code># example of one way of doing a multiple comparison
 
@@ -288,7 +289,7 @@ model tgt = income_band region;
 means income_band region / tukey;
 run;</code></pre>
 <ol start="7" style="list-style-type: decimal">
-<li><strong>Cross-validation or bootstrap</strong> validation should be used when assessing overall value or fit of important models or for choosing between predictive model types. Bootstrap for effect sizes when its important and / or there’s doubt about the assumptions behind the standard estimates.</li>
+<li><strong>Cross-validation or bootstrap</strong> validation should be used when assessing overall value, fit of important models or for choosing between predictive model types. Bootstrap for effect sizes when its important and / or there is doubt about the assumptions behind the standard estimates.</li>
 <li><strong>Avoid stepwise regression</strong> as it can encounter problems with collinearity and produce coefficients with magnitudes that are biased upwards. Use lasso, ridge regression, or the generalised form of the two; elastic net regularization. This should help reduce the number of explanatory variables or to deal with collinearity. Use the <code>glmnet</code> function in R or the <code>glmselect</code> procedure in SAS.</li>
 <li>Complex surveys should generally be analysed with <strong>survey-specific methods</strong> such as the <code>survey</code> package in R or the <code>surveyselect</code>, <code>surveymeans</code>, <code>surveyfreq</code>, <code>surveylogistic</code>, <code>surveyreg</code>, <code>surveyphreg</code> procedures in SAS. A set of examples is shown below for R and SAS.</li>
 </ol>
@@ -318,16 +319,16 @@ proc surveyfreq data=&amp;table_in.
      tables &amp;var1. * &amp;var2. /  chisq cl clwt row col or plots=all;
 run;</code></pre>
 <ol start="10" style="list-style-type: decimal">
-<li>Take <strong>spatial correlation and time series autocorrelation</strong> seriously and if present use the right methods to deal with them.</li>
-<li>Methods like clustering, factor analysis and topic modelling are <strong>handy exploratory tools but don’t reify the results</strong>.</li>
-<li>Use multi-stage modelling methods like propensity score modelling, two stage least squares, structural equation modelling when needed. However, <strong>don’t slip into thinking they’re a get out of jail card</strong> on causality.</li>
-<li>Be alert to the need for <strong>mixed effects models</strong> for grouped data or repeated measurement.</li>
+<li>Take <strong>spatial correlation and time series autocorrelation</strong> seriously and if present use the right methods to deal with them. Methods can be found in various packages such as<code>gam</code> and <code>mgcv</code>.</li>
+<li>Methods like clustering, factor analysis and topic modelling are <strong>handy exploratory tools but do not reify the results</strong>.</li>
+<li>Use multi-stage modelling methods like propensity score modelling, two stage least squares or structural equation modelling when needed. However, <strong>do not slip into thinking they are a get out of jail card</strong> on causality.</li>
+<li>Be alert to the need for <strong>mixed effects models</strong> for grouped data or repeated measurement. Analysis can be done using a package like <code>lme4</code>.</li>
 </ol>
 </div>
 <div id="interpretation" class="section level2">
 <h2>Interpretation</h2>
 <ol style="list-style-type: decimal">
-<li>Always compare the results to “but <strong>if this was just down to chance</strong>, what might we see”.</li>
+<li>Always compare the results to “but <strong>if this was just down to chance</strong>, what might we see?”.</li>
 </ol>
 <p>Last updated Sep-2017 by EW</p>
 </div>

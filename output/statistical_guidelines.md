@@ -1,18 +1,19 @@
 # Statistical Guidelines
 
 # Topics
-These statistical guidelines represent preferences for statistical inference. The original list was created by one of the former M&I General Managers, [Peter Ellis](http://ellisp.github.io/) and extended by the M&I senior data scientists.
+These statistical guidelines represent preferences for statistical inference used by the M&I team. The original list was created by one of the former M&I General Managers, [Peter Ellis](http://ellisp.github.io/) and extended by the M&I senior data scientists.
 
 ## Planning
 1.	Think through the **purpose of inference**  
 * prediction/forecasting,
 * population estimation
 * theoretical understanding
+
 and adapt the modelling strategy appropriately.
 
 
 ## Data preparation
-1.	Use **multiple imputation** to impute missing values. An example of using multivariate imputation by chained equations is shown below
+1.	Use **multiple imputation** to impute missing values. An example of using multivariate imputation by chained equations is shown below.
 
 ```r
 library(mice)
@@ -35,12 +36,12 @@ imputed_num <- mothers_imputed %>%
 2.	**Bootstrap or cross-validation should encompass data processing** (e.g. imputation and other pre modelling tasks should ideally be repeated for each resample).
 
 ## Modelling
-1.	Consider **robust methods** when appropriate to the question – e.g. trimmed means rather than means, robust regression rather than ordinary least squares. 
-2.	Two-way cross tabulations can be useful for presentation and exploration, what is better is a **single general model** that looks at the effects of various variables while controlling for the others.
-3.	Confidence or credibility intervals for **effect sizes** are better than hypothesis tests when there’s a choice.  
+1.	Consider **robust methods** when appropriate to the question - e.g. trimmed means rather than means, robust regression rather than ordinary least squares. 
+2.	Two-way cross tabulations can be useful for presentation and exploration, what is better is a **single general model** (additive and not saturated) that looks at the effects of various variables while controlling for the others.
+3.	Confidence or credibility intervals for **effect sizes** are better than hypothesis tests when there is a choice.  
 4.	Use **prediction intervals** when forecasting or constructing prediction individual results. These intervals are wider than confidence intervals for effects sizes since it takes into account the uncertainty in the population estimate and the data scatter.
 5.	The **humble out of the box tests**, including simple Chi Square tests of independence between two variables in cross tabulations with counts, do have their place. Be careful when the sample sizes are very large - everything will probably look significant.
-6. If it’s important enough to justify the effort then correct for **multiple comparisons**. If the correction is not justified then keep in mind for interpretation. An example of Tukey’s multiple comparison is shown below for R and SAS
+6. If it is important enough to justify the effort then correct for **multiple comparisons**. If the correction is not justified then keep in mind for interpretation. An example of Tukey's multiple comparison is shown below for R and SAS.
 
 ```r
 # example of one way of doing a multiple comparison
@@ -59,7 +60,7 @@ model tgt = income_band region;
 means income_band region / tukey;
 run;
 ```
-7.	**Cross-validation or bootstrap** validation should be used when assessing overall value or fit of important models or for choosing between predictive model types. Bootstrap for effect sizes when its important and / or there’s doubt about the assumptions behind the standard estimates.
+7.	**Cross-validation or bootstrap** validation should be used when assessing overall value, fit of important models or for choosing between predictive model types. Bootstrap for effect sizes when its important and / or there is doubt about the assumptions behind the standard estimates.
 8.	**Avoid stepwise regression** as it can encounter problems with collinearity and produce coefficients with magnitudes that are biased upwards. Use lasso, ridge regression, or the generalised form of the two; elastic net regularization. This should help reduce the number of explanatory variables or to deal with collinearity. Use the `glmnet` function in R or the `glmselect` procedure in SAS.
 9.	Complex surveys should generally be analysed with **survey-specific methods** such as the `survey` package in R or the `surveyselect`, `surveymeans`, `surveyfreq`, `surveylogistic`, `surveyreg`, `surveyphreg` procedures in SAS. A set of examples is shown below for R and SAS.
 
@@ -94,14 +95,14 @@ proc surveyfreq data=&table_in.
 	 tables &var1. * &var2. /  chisq cl clwt row col or plots=all;
 run;
 ```
-10.	Take **spatial correlation and time series autocorrelation** seriously and if present use the right methods to deal with them.
-11.	Methods like clustering, factor analysis and topic modelling are **handy exploratory tools but don’t reify the results**.
-12.	Use multi-stage modelling methods like propensity score modelling, two stage least squares, structural equation modelling when needed. However, **don’t slip into thinking they’re a get out of jail card** on causality.
-13.	Be alert to the need for **mixed effects models** for grouped data or repeated measurement.
+10.	Take **spatial correlation and time series autocorrelation** seriously and if present use the right methods to deal with them. Methods can be found in various packages such as`gam` and `mgcv`.
+11.	Methods like clustering, factor analysis and topic modelling are **handy exploratory tools but do not reify the results**.
+12.	Use multi-stage modelling methods like propensity score modelling, two stage least squares or structural equation modelling when needed. However, **do not slip into thinking they are a get out of jail card** on causality.
+13.	Be alert to the need for **mixed effects models** for grouped data or repeated measurement. Analysis can be done using a package like `lme4`.
 
 ## Interpretation
 
-1.	Always compare the results to “but **if this was just down to chance**, what might we see”.
+1.	Always compare the results to "but **if this was just down to chance**, what might we see?".
 
 Last updated Sep-2017 by EW
 
