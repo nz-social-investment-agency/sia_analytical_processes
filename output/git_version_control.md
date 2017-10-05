@@ -152,7 +152,7 @@ v1.1.1          v1.1.1
 
 
 ### Switching a repository from private to public
-A publicly available repository means anyone with an internet connection can see the repository. Only the person who created the repo or the owner of the organisation can modify the settings of a repository. **Before** making a repository public you must have sign off from the appropriate manager.
+A publicly available repository means anyone with an internet connection can see the repository. Only the person who created the repo or the owner of the organisation can modify the settings of a repository. **Before** making a repository public you must have sign off from the appropriate manager. Full instructions on how to publish code can be found [here](https://github.com/nz-social-investment-agency/sia_analytical_processes/wiki/How-to-Publish-Code).
 
 <div class="jumbotron">
 ![](../resources/git_settings.png)
@@ -273,9 +273,10 @@ The resulting folders are then zipped and stored in the folder `qA537714`. These
 ### Troubleshooting - cannot connect
 If you try to clone or push changes to the remote repository and it does not work check the following
 
-* Is the repository name correct (the easiest thing to do is go to the GitHub website find the repository and copy and paste the URL)?
+* Is the repository name correct? The easiest thing to do is go to the GitHub website find the repository and copy and paste the URL.
 * Have you spelled the http proxy and https proxy correctly in the `gitconfig` file?
 * Have you recently changed your log in/password? If so, make sure you update your `gitconfig` file.
+* Has the proxy resolved the domain? If you browse to the site using Chrome (or any other browser) this will force the proxy to resolve the domain. From there you should be able to push changes to master.
 
 
 ### Branching and Merging
