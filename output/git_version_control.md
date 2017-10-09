@@ -293,11 +293,41 @@ Hooks are little scripts that are triggered during an event like `commit` or `pu
 
 An example of a coding standard hook can be found [here](https://gist.github.com/danielpopdan/990f9521f84d693ccd1a).
 
+### Deleting files and purging the history
+If you have put sensitive documents in the remote repository or files that shouldn't be in the repository such as oversized datasets then deleting them will mean that they still can be accessed via the history of the repository. To truly remove a file you need to purge the repository's history. This can be done by using the `git filter-branch` command.
+
+
+```bash
+# make sure you are sitting in the repository
+cd /c/NotBackedUp/sia_analytical_processes
+
+# this removes the files
+# if the commit only commited that file then you will have an empty commit which will be removed
+# this will also remove the file from the tagged releases
+# allow a few seconds for the history to be rewritten
+git filter-branch --force --index-filter 'git rm --cached --ignore-unmatch  resources/wrong file.txt' --prune-empty --tag-name-filter cat -- --all
+
+# put the file in the .gitignore so you don't accidentally put it in the repository again
+echo "resources/wrong_file.txt" >> .gitignore
+
+# commit these changes to the local repository
+git add .gitignore
+git commit -m "added files to gitignore"
+
+# once the local repo is tidied up you can overwrite the remote repo
+git push origin --force --all
+git push origin --force -tags
+
+```
+You can then go to GitHub and have a look at the history. You wont be able to find the purged file.
+
+Note that all branches should be rebased and not merged otherwise the bad file could sneak back into the repo.
+
 ## Related documents
-* Adding an individual to the SIA GitHub organisation 
+* Adding an individual to the [SIA GitHub organisation](https://github.com/nz-social-investment-agency/sia_analytical_processes/wiki/Adding-a-person-to-an-IDI-Project) 
 * [SIA coding conventions](https://github.com/nz-social-investment-agency/sia_analytical_processes)
 
 
-Last updated Sep-2017 by EW, SA and CM
+Last updated Oct-2017 by EW, SA and CM
 
 

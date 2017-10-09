@@ -473,14 +473,40 @@ git clone https://github.com/nz-social-investment-agency/outcomes-measurement.wi
 <p>Hooks are little scripts that are triggered during an event like <code>commit</code> or <code>push</code>. The most useful hook for the SIA would probably be one that enforces coding standards. Such a hook has not been implemented yet.</p>
 <p>An example of a coding standard hook can be found <a href="https://gist.github.com/danielpopdan/990f9521f84d693ccd1a">here</a>.</p>
 </div>
+<div id="deleting-files-and-purging-the-history" class="section level3">
+<h3>Deleting files and purging the history</h3>
+<p>If you have put sensitive documents in the remote repository or files that shouldn’t be in the repository such as oversized datasets then deleting them will mean that they still can be accessed via the history of the repository. To truly remove a file you need to purge the repository’s history. This can be done by using the <code>git filter-branch</code> command.</p>
+<pre class="bash"><code># make sure you are sitting in the repository
+cd /c/NotBackedUp/sia_analytical_processes
+
+# this removes the files
+# if the commit only commited that file then you will have an empty commit which will be removed
+# this will also remove the file from the tagged releases
+# allow a few seconds for the history to be rewritten
+git filter-branch --force --index-filter 'git rm --cached --ignore-unmatch  resources/wrong file.txt' --prune-empty --tag-name-filter cat -- --all
+
+# put the file in the .gitignore so you don't accidentally put it in the repository again
+echo &quot;resources/wrong_file.txt&quot; &gt;&gt; .gitignore
+
+# commit these changes to the local repository
+git add .gitignore
+git commit -m &quot;added files to gitignore&quot;
+
+# once the local repo is tidied up you can overwrite the remote repo
+git push origin --force --all
+git push origin --force -tags
+</code></pre>
+<p>You can then go to GitHub and have a look at the history. You wont be able to find the purged file.</p>
+<p>Note that all branches should be rebased and not merged otherwise the bad file could sneak back into the repo.</p>
+</div>
 </div>
 <div id="related-documents" class="section level2">
 <h2>Related documents</h2>
 <ul>
-<li>Adding an individual to the SIA GitHub organisation</li>
+<li>Adding an individual to the <a href="https://github.com/nz-social-investment-agency/sia_analytical_processes/wiki/Adding-a-person-to-an-IDI-Project">SIA GitHub organisation</a></li>
 <li><a href="https://github.com/nz-social-investment-agency/sia_analytical_processes">SIA coding conventions</a></li>
 </ul>
-<p>Last updated Sep-2017 by EW, SA and CM</p>
+<p>Last updated Oct-2017 by EW, SA and CM</p>
 </div>
 </div>
 
