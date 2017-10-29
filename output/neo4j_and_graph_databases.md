@@ -15,7 +15,7 @@ Sometimes the graphs can have edges that flow in a particular direction which is
 ## What is a graph database and why do we use them?
 Most of the data warehouses we work with at the SIA are relational. These are a set of highly structured tables that are joined together via primary keys and foreign keys. Joins are carried out once the query is run. Relational databases are not suited for modelling networks of highly connected objects. For exmaple, if you were looking at friends of friends you would need several many to many recursive joins to capture this in a relational database. This increases query latency. A relational database will have complexity proportional to the cardinality of the tables O(|A|+|B|) - hash join O(|A|*|B|) - nested loop join O(???) index join - will depend on the number of pages in the index I guess
 
-Graph databases have a different structure. Relationships are stored at the individual level. Nodes are linked to each other in the graph database directly in the storage so no lookups are necessary this reduces the run time of queries significantly as the networks gets larger and more connected Neo4j has O(k) complexity where k is the number of edges. 
+Graph databases have a different structure. Relationships are stored at the individual level. Nodes are linked to each other in the graph database directly in the storage so no lookups are necessary this reduces the run time of queries significantly as the networks gets larger and more connected graph databases have O(k) complexity where k is the number of edges. 
 
 [Neo4j](https://neo4j.com/) is a popular graph database tool and is what the M&I team have used for proof of concepts.
 
@@ -29,7 +29,7 @@ There are also numerous ways to visualise graphs. Some tools are purely for visu
 * [gephi](https://gephi.org/)
 * [visNetwork](https://cran.r-project.org/web/packages/visNetwork/vignettes/Introduction-to-visNetwork.html)
 
-M&I have kept with using neo4j for proof of concept visualisation. 
+Since M&I have used Neo4j for the graph database it is also used for the proof of concept visualisation. 
 
 There are many other examples available. For instance, Compass have created a [Knowledge Lab shiny app](https://compassnz.shinyapps.io/knowlabshiny/) that uses `visNetwork` to display a graph. The code can be found [here](https://github.com/kcha193/KnowLabShiny). Of particular interest is the `base` folder which uses a set of csv to store the nodes and edges. A screenshot of the Knowledge Lab graph visualisation is shown below. Here the nodes represent outcomes and indicators while edges represent causal inferences. Each edge properties showing the literature and the magnitude of the effects.
 
@@ -39,7 +39,7 @@ There are many other examples available. For instance, Compass have created a [K
 </div>
 
 ## Graph demo using Neo4j
-The M&I team created a proof of concept to model an outcomes framework. The team found that several spreadsheets existed but the row/column nature of the spreadsheets masked the number of indicators actually available. The Superu framework for instance appears to have almost 800 indicators. However, it turned out that most projects were using the same indicators. Once the duplicates were removed there were fewer than 200 indicators remaining. The team decided that it would be great to take this spreadsheet and the MSD Report indicators and visualise them using a graph structure so that all the relationships between could be seen. For such a small number of indicators a graph database was not necessary but it was used as a proof of concept to illustrate how larger more connected networks could be constructed in a graph database.Note that this is a small example, queries may not be optimised and this graph data model may not scale to larger applications.
+The M&I team created a proof of concept to model a couple of outcomes frameworks. The team found that several spreadsheets existed but the row/column nature of the spreadsheets masked the number of indicators actually available. The Superu framework for instance appears to have almost 800 indicators. However, it turned out that most projects were using the same indicators. Once the duplicates were removed there were fewer than 200 indicators remaining. The team decided that it would be great to take this spreadsheet and the MSD Report indicators and visualise them using a graph structure so that all the relationships between could be seen. For such a small number of indicators a graph database was not necessary but it was used as a proof of concept to illustrate how larger, more connected networks could be constructed in a graph database.Note that this is a small example, queries may not be optimised and this graph data model may not scale to larger applications.
 
 ### Installing Neo4j
 Currently we do not have an Enterprise edition of Neo4j as this was just a proof of concept. To download a community edition follow these steps.
@@ -52,8 +52,8 @@ Currently we do not have an Enterprise edition of Neo4j as this was just a proof
 
 2. Click on the download now button which will download the exe file.
 3. Open the exe file. A security warning will pop up asking if you want to run the file. Click `Run`.
-4. If you get any security warning windows popping up then click on `Allow this file` and Click `Ok` to add it to the exception list
-5. An install window will pop up. Wait for it to reach 100%
+4. If you get any security warning windows popping up then click on `Allow this file` and Click `Ok` to add it to the exception list.
+5. An install window will pop up. Wait for it to reach 100%.
 6. Select a destination. We will put this in our scratch space as we do not have admin permissions to store the program in the Program Files area. Once you have selected this area click on `Next`.
 7. A welcome page pops up again click on `Next`.
 8. Accept the license agreement and click `Next`.
@@ -66,7 +66,7 @@ Currently we do not have an Enterprise edition of Neo4j as this was just a proof
 
 ### Creating a graph database
 ### Graph data model
-All nodes must and relationships must be defined to create a graph database. This was done using csv files (or text files if the name description has a comma in it). The rule the team used was one file per node type and per relationship type. Each file representing a node will contain a node name, node id and properties. Each file representing an edge will have at least two node ids to define a relationship and possibly some edge names. 
+All nodes and relationships must be defined to create a graph database. This was done using csv files (or text files if the name description has a comma in it). The rule the team used was one file per node type and per relationship type. Each file representing a node will contain a node name, node id and properties. Each file representing an edge will have at least two node ids to define a relationship and possibly some edge names. 
 
 A rough graph model showing the SUPERU related nodes and edges is shown below.
 
@@ -75,30 +75,31 @@ A rough graph model showing the SUPERU related nodes and edges is shown below.
 
 </div>
 
-Each file has a header with the following naming conventions: lowercase names for prooerties and relationships, upper case for the name of a node.
+Each file has a header with the following naming conventions: lowercase names for prooerties and relationships, proper case for the type of a node.
 
 Note that there is some duplication in the properties. For example the SUPERU flags are present in the MSD domain node and the SUPERU domain node. It is possible to normalise these further but it makes the queries more complicated. It would have the advantage of fewer nodes but as this is a proof of concept we have chosen a quick method that may have some duplication. The graph data model would have to be revisited if this work was to be progressed further.
 
 ### Reading in the graph data
-Cypher is a graph query language that makes it easy to query relationships in graphs. It has several clauses that make it easy to find results.
+Cypher is a graph query language that makes it easy to query relationships in graphs. It has several clauses that make it easy to find results and functions that are specifically made for graph objects such as the shortest path between two nodes.
 
-There are a few steps to ensure you can read the graph into Neo4j
+There are a few steps to ensure you can read the graph into Neo4j:
 
 1. Go to the graph directory that you created in step 11 of the install.
-2. Create an import folder within here
-3. Copy and paste the csv\/txt files into the import folder
-4. Once you have done that you can run the following code in Neo4j
+2. Create an import folder within here.
+3. Copy and paste your csv\/txt files into the import folder.
+4. Once you have done that you can run the following code in Neo4j.
 
 
 
 ```r
 // Create SUPERU domains
-// this will commit the rows to the graph database
+// this will commit every 1000 rows 
+// you can specify a number after the commit keyword to commit more frequently
 USING PERIODIC COMMIT
 // this loads a csv that contains headers and gives it the alias called row
 LOAD CSV WITH HEADERS FROM "file:///superu_domains.csv" AS row
-// this creates the graph database, the node has the label Domain and the properties of the node are
-// defined within the curly brackets
+// this creates the graph database, the node has the type/label Domain
+// the properties of the node are defined within the curly brackets
 CREATE (:Domain {domainname: row.name, domainid: toInteger(row.domainid), superu_flag: "TRUE" });
 ```
 
@@ -109,7 +110,7 @@ The output from running this query is shown below
 
 </div>
 
-Each statement can then be added per query to read in the remaining nodes
+Each statement can then be added per query to read in the remaining nodes.
 
 
 ```r
@@ -163,28 +164,35 @@ Frequency:row.Frequency,
 implementationid:toInteger(row.variantid) });
 ```
 
-Just like relational databases, indexes can also be created
+Just like relational databases, indexes can also be created.
 
 
 ```r
+// create indexes for the various node types based on the relevant id column
 CREATE INDEX ON :Domain(domainid);
 CREATE INDEX ON :Subdomain(subdomainid);
 CREATE INDEX ON :Outcome(outcomeid);
 CREATE INDEX ON :Indicator(indicatorid);
 ```
 
-It is important to ensure that the node files are read in first. Relationships or edges cannot be defined until the nodes exist. Now that all the nodes are read in the relationships can be defined
+It is important to ensure that the node files are read in first. Relationships or edges cannot be defined until the nodes exist. Now that all the nodes are read in the relationships can be defined.
 
 
 ```r
+// construct the edges between the SUPERU domains and subdomains
 USING PERIODIC COMMIT
+// give the edges an alias of row
 LOAD CSV WITH HEADERS FROM "file:///superu_dom_subdom.csv" AS row
+// for each line in row fetch the domain and subdomain
 MATCH (domain:Domain {domainid: toInteger(row.domainid) })
 MATCH (subdomain:Subdomain {subdomainid: toInteger(row.subdomainid) })
+// create a relationship - nodes have () brackets while relationships have [] brackets
+// this relationship is directed as indicated by the -> 
+// this means that subdomain is a subcategory of domain
 MERGE (domain)-[pu:subcategorised_as{relname:"subcategorised_as"}]->(subdomain);
 ```
 
-The above code created a directed relationship between domain and subdomain. Now the remaining relationships can be created
+The above code created a directed relationship between domain and subdomain. Now the remaining relationships can be created.
 
 
 ```r
@@ -208,6 +216,45 @@ MERGE (indicator)-[pu:implemented_as{relname:"implemented_as"}]->(implementation
 ```
 
 
+Nodes can also be set up for other frameworks and the relationships between the frameworks can be constructed.
+
+
+```r
+// Create MSD domains
+USING PERIODIC COMMIT
+LOAD CSV WITH HEADERS FROM "file:///msd_domains.csv" AS row
+CREATE (:Domain {domainname: row.name, domainid: toInteger(row.domainid), 
+superu_flag: row.superu_flag, msd_flag: row.msd_flag});
+
+// Create MSD subdomains
+USING PERIODIC COMMIT
+LOAD CSV WITH HEADERS FROM "file:///msd_subdomains.csv" AS row
+CREATE (:Subdomain {subdomainname: row.name, subdomainid: toInteger(row.subdomainid), 
+superu_flag:row.superu_flag, msd_flag: row.msd_flag });
+
+// MSD Domain to Subdomain relationship
+// ensure you have where clauses when you construct the relationships
+// if you dont the MSD relationships will mistakenly be linked to the SUPERU relationships
+USING PERIODIC COMMIT
+LOAD CSV WITH HEADERS FROM "file:///msd_dom_subdom.csv" AS row
+MATCH (domain:Domain {domainid: toInteger(row.domainid) }) 
+WHERE domain.msd_flag="TRUE"
+MATCH (subdomain:Subdomain {subdomainid: toInteger(row.subdomainid) }) 
+WHERE subdomain.msd_flag="TRUE"
+MERGE (domain)-[pu:subcategorised_as{relname:"subcategorised_as"}]->(subdomain);
+
+// MSD Domain to SUPERU domain relationship
+// note this relationship is non-directed
+// ensure you have where clauses when you construct the relationships
+// if you dont the MSD relationships will mistakenly be linked to the SUPERU relationships
+USING PERIODIC COMMIT
+LOAD CSV WITH HEADERS FROM "file:///superu_msd_domain.csv" AS row
+MATCH (domain1:Domain {domainid: toInteger(row.superu_domainid) })
+MATCH (domain2:Domain {domainid: toInteger(row.msd_domainid) }) 
+WHERE domain1.superu_flag="TRUE" and domain2.msd_flag="TRUE"
+MERGE (domain1)-[r:similar_to{relname:"similar_to"}]-(domain2);
+```
+
 ### Querying a graph database
 Two clauses used a lot that you dont find in relational database query languages are `match` and `return`. 
 
@@ -229,10 +276,47 @@ MATCH (d:Implementation) SET d.msd_flag = 'FALSE' RETURN d;
 ```
 
 
-The cypher language has the power to do advanced calculations such as determining the shortest path between nodes. More info on the syntax can be found below.
+The cypher language has the power to do advanced calculations such as easily identifying relationships between nodes. More info on the syntax can be found below.
 
 
-**Tip:** If you run `:play cypher` in Neo4j you can find out more information about the cypher query language.
+```r
+// identify all relationships between 
+match (d:Domain)-[r]-(s:Subdomain) return d, r, s;
+```
+
+<div class="jumbotron">
+![](../resources/neo4j_relationships.png)
+
+</div>
+
+
+
+```r
+// identify all relationships between the domains Health_status or Health
+match (d:Domain)-[r]-(s:Subdomain) where d.domainname = 'Health_status' or d.domainname = 'Health' return d, r, s
+```
+
+<div class="jumbotron">
+![](../resources/neo4j_relationships_closeup.png)
+
+</div>
+
+Just like relational databases you can also look at query plans. Use `explain` at the front of your statement to see the plan but not run the statement. Use `profile` if you want to see which operations are consuming the most resources. Note that profiling itself consumes a lot more resources so you should only use it when you are actively working on optimising a query. An example of profiling is shown below.
+
+
+```r
+profile match (d:Domain)-[r]-(s:Subdomain) where d.domainname = 'Health_status' or d.domainname = 'Health' return d, r, s
+```
+
+It produces the following output. You can expand the collapsed sections to see exactly what happened at each step.
+
+<div class="jumbotron">
+![](../resources/neo4j_cypher_profile.png)
+
+</div>
+
+
+**Tip**: If you run `:play cypher` in Neo4j you can find out more information about the cypher query language.
 
 Last updated Oct-2017 by VB and EW
 
