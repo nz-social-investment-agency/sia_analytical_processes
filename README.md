@@ -8,6 +8,7 @@ Content related to process and best practice for the analytical team at the SIA.
 * [Version Control with Git](https://nz-social-investment-agency.github.io/sia_analytical_processes/output/git_version_control.html)
 * [Statistical Guidelines](https://nz-social-investment-agency.github.io/sia_analytical_processes/output/statistical_guidelines.html)
 * [Neo4j and Graph Databases](https://nz-social-investment-agency.github.io/sia_analytical_processes/output/neo4j_and_graph_databases.html)
+* [Value of Sharing the SIAL Code](https://nz-social-investment-agency.github.io/sia_analytical_processes/output/value_of_code_sharing.html)
 
 ## Getting Help
 For more help/guidance email info@sia.govt.nz 
