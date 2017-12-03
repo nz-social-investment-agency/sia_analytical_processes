@@ -11,7 +11,7 @@ Content related to process and best practice for the analytical team at the SIA.
 * [Value of Sharing the SIAL Code](https://nz-social-investment-agency.github.io/sia_analytical_processes/output/value_of_code_sharing.html)
 
 ## Licenses for the SIA Analytical Processes Content
-![License: CC BY 4.0](https://i.creativecommons.org/l/by/4.0/88x31.png)
+[![License: CC BY 4.0](https://i.creativecommons.org/l/by/4.0/88x31.png)](https://creativecommons.org/licenses/by/4.0/)
 
 Crown copyright ©. This copyright work is licensed under the Creative Commons Attribution 4.0 International licence. In essence, you are free to copy, distribute and adapt the work, as long as you attribute the work to the New Zealand Government and abide by the other licence terms. 
 
