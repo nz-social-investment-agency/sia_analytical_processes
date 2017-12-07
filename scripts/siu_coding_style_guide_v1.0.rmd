@@ -1,5 +1,5 @@
 ---
-title: "SIU Coding Style Guide"
+title: "SIA Coding Style Guide"
 # author: 'Author: Evidence and Insights'
 # date: 'Last updated: June 2017'
 knit: (function(inputFile, encoding) { 
@@ -9,20 +9,13 @@ knit: (function(inputFile, encoding) {
                         output_file=file.path("..", out_dir, "siu_coding_style_guide_v1.0.html")) })
 output:
   html_document:
-    css: ../resources/SIU_style_guide_template.css
+    css: ../resources/SIA_blog.css
     keep_md: yes
     self_contained: yes
     toc: true
     toc_float: 
       collapsed: false
 ---
-
-<style>
-  .title {
-    padding-top: 10px;
-    padding-left: 10px;
-  }
-</style>
 
 ## Documentation 
 

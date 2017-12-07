@@ -2,8 +2,10 @@
    background-color:#F47C20;
    background-image:url(./sia_logo.svg);
    background-repeat: no-repeat;
-   background-position: 115%;
-   background-size: 40%;
+   background-position: 130%;
+   background-size: 55%;
+   -ms-background-position-x: 135%;
+   -webkit-background-size: 50%;
    color: white;
    border-radius: 5px;
    padding-left: 10px;

@@ -1,5 +1,5 @@
 ---
-title: "Graph databases and visualisation using Neo4j"
+title: "Graph databases with Neo4j"
 # author: 'Author: Measurement and Insights'
 # date: 'Sep 2017'
 knit: (function(inputFile, encoding) { 
