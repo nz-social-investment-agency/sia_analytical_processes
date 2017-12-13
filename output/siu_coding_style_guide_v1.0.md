@@ -1,11 +1,4 @@
-# SIU Coding Style Guide
-
-<style>
-  .title {
-    padding-top: 10px;
-    padding-left: 10px;
-  }
-</style>
+# SIA Coding Style Guide
 
 ## Documentation 
 
@@ -451,7 +444,7 @@ sofie_wts_freqpoly <-
 ```
 
 * Use the correct fonts via the SIU theme, for text and label geoms in charts as well as for the basic elements.
-* Don't forget the macrons or other special characters eg Māori, whānau, Pākehā (in R, can use "\\u0101" or equivalent instead of "a" to get an a with a macron).
+* Don't forget the macrons or other special characters eg MÄori, whÄnau, PÄkehÄ (in R, can use "\\u0101" or equivalent instead of "a" to get an a with a macron).
 
 
 ```r

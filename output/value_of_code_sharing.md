@@ -1,4 +1,4 @@
-# Value generated from sharing the SIAL code
+# Value of sharing SIAL code
 
 # The SIAL
 The SIA has created a Social Investment Analytical Layer (SIAL): events-structured tables that arrange a version of the data held in Statistics New Zealand's Integrated Data Infrastructure (IDI) into a consistent format. The SIA did this to make it easier and faster for them and authorised IDI users (researchers and analysts) to carry out a piece of cross sector analysis in the IDI. 

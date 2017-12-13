@@ -1,5 +1,5 @@
 ---
-title: "Value generated from sharing the SIAL code"
+title: "Value of sharing SIAL code"
 # author: 'Author: Measurement and Insights'
 # date: 'Nov 2017'
 knit: (function(inputFile, encoding) { 

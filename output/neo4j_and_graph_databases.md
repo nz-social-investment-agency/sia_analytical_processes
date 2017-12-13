@@ -1,4 +1,4 @@
-# Graph databases and visualisation using Neo4j
+# Graph databases with Neo4j
 
 # Topics
 
