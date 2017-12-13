@@ -47,7 +47,7 @@ The current IDI setup allows us to see who else is storing the SIAL tables in th
 
 It is clear that time and effort to perform an analysis has decreased because of the SIAL. Having cross agency standardised tables saved considerable time because individuals no longer need to be experts in multiple agencies' datasets. It also saved considerable time in terms of tidying up the code to produce a picture of a person's interaction with Government agencies. By using several of the SIA's reusable tools that are publicly available on GitHub we were able to turn around an urgent piece of work in the space of days rather than months.
 
-In addition there are also cost benefits. It took six SIA members (both a mix of contractors and fixed term staff) six weeks to produce the initial version of the SIAL. If we use a conservative $100 per hour per person then the cost of producing the SIAL would be 6 people x 40 hours x 6 weeks x $100 an hour = $240,000 in time saved for each team that uses the SIAL. This is a conservative estimate given that contractors are often working in the IDI; the SIA team had considerable experience across a wide range of agency datasets and the SIA team consists of data scientists who are very proficient in SQL coding.
+In addition there are also cost benefits. It took six SIA members (both a mix of contractors and fixed term staff) six weeks to produce the initial version of the SIAL. If we use a conservative $100 per hour per person then the cost of producing the SIAL would be 6 people x 40 hours x 6 weeks x $100 an hour = $144,000 in time saved for each team that uses the SIAL. This is a conservative estimate given that contractors are often working in the IDI; the SIA team had considerable experience across a wide range of agency datasets and the SIA team consists of data scientists who are very proficient in SQL coding.
 
 ## There are others collaborating with the SIA to improve the SIAL
 The SIAL code is undergoing a business review from all the relevant agencies. To date we have received full feedback from MOJ, ACC, MSD, Oranga Tamariki, Police and Corrections. The Ministry of Justice even took the time to write new parts of code to derive court case costs in a more accurate fashion. There are reviews in progress with MOH, MOE, IRD and HNZ.
@@ -58,7 +58,7 @@ Stats NZ have gone a step further and taken the SIAL code and used it to create 
 
 
 ## The SIAL is a great example of how sharing open source code can create awareness, utilisation and collaboration
-In a short space of time we can see that six other organisations had used the SIAL which has resulted in over a million dollars in savings in terms of organisational costs. Several agencies have completed the business QA and even provided code to help make the SIAL even better.
+In a short space of time we can see that six other organisations had used the SIAL which has resulted in almost a million dollars in savings in terms of organisational costs. Several agencies have completed the business QA and even provided code to help make the SIAL even better.
 
 
 Last updated Nov-2017 by EW
