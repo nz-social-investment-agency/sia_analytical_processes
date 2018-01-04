@@ -6,7 +6,7 @@ knit: (function(inputFile, encoding) {
       out_dir <- "output";
       rmarkdown::render(inputFile,
                         encoding=encoding, 
-                        output_file=file.path("..", out_dir, "siu_coding_style_guide_v1.0.html")) })
+                        output_file=file.path("..", out_dir, "sia_coding_style_guide.html")) })
 output:
   html_document:
     css: ../resources/SIA_blog.css
