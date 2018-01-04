@@ -22,7 +22,7 @@ Please note that neither the New Zealand Government emblem nor the New Zealand G
 ## License for the SIA Analytical Processes Code Base
 MIT Licence
 
-Crown copyright (c) 2015, Social Investment Agency on behalf of the New Zealand Government.
+Crown copyright (c) 2017, Social Investment Agency on behalf of the New Zealand Government.
 
 See ![LICENSE.md](https://github.com/nz-social-investment-agency/sia_analytical_processes/blob/master/LICENSE) for more details.
 
