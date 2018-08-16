@@ -333,6 +333,6 @@ Note that all branches should be rebased and not merged otherwise the bad file c
 * [SIA coding conventions](https://github.com/nz-social-investment-agency/sia_analytical_processes)
 
 
-Last updated Oct-2017 by EW, SA and CM
+Last updated Aug-2018 by EW, SA and CM
 
 
