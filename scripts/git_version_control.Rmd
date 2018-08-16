@@ -321,7 +321,7 @@ git commit -m "added files to gitignore"
 
 # once the local repo is tidied up you can overwrite the remote repo
 git push origin --force --all
-git push origin --force -tags
+git push origin --force --tags
 
 ```
 You can then go to GitHub and have a look at the history. You wont be able to find the purged file.

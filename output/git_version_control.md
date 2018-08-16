@@ -1,4 +1,22 @@
-# Version Control with Git
+---
+title: "Version Control with Git"
+# author: 'Author: Measurement and Insights'
+# date: 'Sep 2017'
+knit: (function(inputFile, encoding) { 
+      out_dir <- "output";
+      rmarkdown::render(inputFile,
+                        encoding=encoding, 
+                        output_file=file.path("..", out_dir, "git_version_control.html")) })
+output:
+  html_document:
+    css: ../resources/SIA_blog.css
+    keep_md: yes
+    self_contained: yes
+    toc: true
+    toc_float: 
+      collapsed: false
+      
+---
 
 # Topics
 Version control allows for a team to collaborate on code without overwriting changes and allows people to track how the code evolved. It makes it very easy to create and move between different versions of your code.
@@ -316,7 +334,7 @@ git commit -m "added files to gitignore"
 
 # once the local repo is tidied up you can overwrite the remote repo
 git push origin --force --all
-git push origin --force -tags
+git push origin --force --tags
 
 ```
 You can then go to GitHub and have a look at the history. You wont be able to find the purged file.
